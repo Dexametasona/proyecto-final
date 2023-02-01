@@ -1,12 +1,13 @@
 import { Subscription } from 'rxjs';
 import { DataService } from './../../service/data.service';
 import { AuthService } from './../../service/auth.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirebaseError } from 'firebase/app';
 import Swal from 'sweetalert2';
 import {  Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-login-child',
@@ -27,7 +28,8 @@ export class LoginChildComponent implements OnInit, OnDestroy{
       
   title='Iniciar Sesión';
   listUser:User[]=[];
-  suscript!:Subscription;
+  suscript1!:Subscription;
+  suscript2!:Subscription;
   alert=false;
 
   mensaje!:string;
@@ -54,7 +56,7 @@ export class LoginChildComponent implements OnInit, OnDestroy{
         title:'Inicio de sesión exitoso',
         heightAuto:false
       })
-      // this.route.navigate(['/home'])
+      this.route.navigate(['/home'])
     }).catch((err:FirebaseError)=>{
       if (err.code==='auth/user-not-found') this.mensaje='Usuario no encontrado';
       else if(err.code==='auth/wrong-password') this.mensaje='Contraseña inválida'
@@ -81,11 +83,20 @@ export class LoginChildComponent implements OnInit, OnDestroy{
       label.style.opacity='50%';
     }
   }
+
+  mostrar(){
+    const auth=getAuth()
+    const user=auth.currentUser;
+    console.log(user)
+    console.log(this.db.estado)
+  }
+
   ngOnInit(): void {
-    this.suscript=this.db.getUser().subscribe(res=>this.listUser=res)
+    this.suscript1=this.db.getUser().subscribe(res=>this.listUser=res)
   }
     
   ngOnDestroy(): void {
-    this.suscript.unsubscribe
+    this.suscript1.unsubscribe
   }
+
 }

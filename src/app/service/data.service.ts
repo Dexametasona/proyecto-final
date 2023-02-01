@@ -11,7 +11,12 @@ import { Observable, Subject } from 'rxjs';
 
 export class DataService {
   constructor(private firestore:Firestore) { }
-  estado!:UserStatus;
+  estado:UserStatus={
+    status:false,
+    email:'',
+    type:'',
+    name:''
+  };
   private estado$= new Subject<UserStatus>;
 
   updateEstado$(estado:UserStatus){
@@ -31,14 +36,6 @@ export class DataService {
     return collectionData(dataUserRef, {idField:'id'}) as Observable<User[]>
   }
 
-  updateStatus(status:UserStatus){
-    const UserRef=doc(this.firestore, 'UserStatus/NFvzb9E4eoG7pKH9IiMy');
-    return setDoc(UserRef, status)
-  }
-  getstatus():Observable<UserStatus[]>{
-    const dataUserStatusRef=collection(this.firestore, 'UserStatus');
-    return collectionData(dataUserStatusRef, {idField:'id'}) as Observable<UserStatus[]>
-  }
 
 
 }

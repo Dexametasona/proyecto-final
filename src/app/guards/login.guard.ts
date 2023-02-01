@@ -1,6 +1,6 @@
 import { DataService } from './../service/data.service';
 import { Injectable} from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
 @Injectable({
@@ -10,8 +10,8 @@ export class LoginGuard implements CanActivate{
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot){
-    return true
+      console.log(!this.db.estado.status)
+    return !this.db.estado.status
   }
   constructor(private db:DataService){}
-  
 }

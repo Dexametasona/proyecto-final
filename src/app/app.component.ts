@@ -37,7 +37,8 @@ export class AppComponent implements OnInit, OnDestroy{
             type:'',
             name:''
           }
-          await this.db.updateStatus(status).then(res=>console.log('logout')).catch(err=>console.log(err))
+          this.db.updateEstado$(status)
+          // await this.db.updateStatus(status).then(res=>console.log('logout')).catch(err=>console.log(err))
           this.route.navigate(['/login'])
         }
       })
@@ -47,22 +48,17 @@ export class AppComponent implements OnInit, OnDestroy{
         text:'Usuario no logeado'
       })
     }
-  }
-  mostrar(){
-    alert(this.status)
+
   }
   ngOnInit(): void {
-    // this.Subscript=this.db.getstatus().subscribe(res=>{
-    //   this.status=res[0].status
-    //   this.name=res[0].name
-    //   this.type=res[0].type
-    // })
-    // this.status=this.db.estado.status;
-    // this.name=this.db.estado.name;
-    // this.type!=this.db.estado.type;
-    
+    this.Subscript=this.db.getEstado$().subscribe(res=>{
+      this.status=res.status
+      this.name=res.name
+      this.type=res.type
+    })
+    this.auth.logout().then(()=>console.log('sesión cerrada al inicio')).catch(err=>console.log('ocurrio un error: '+err))
   }
   ngOnDestroy(): void {
-    // this.Subscript.unsubscribe()
+    this.Subscript.unsubscribe()
   }
 }

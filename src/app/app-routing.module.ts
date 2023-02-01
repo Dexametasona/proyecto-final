@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:'home', component:HomeComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
   {path:'prod', component:ProductComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
   {path:'regProd', component:RegProdComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
-  {path:'login', component:LoginComponent, children:[
+  {path:'login', component:LoginComponent, canActivate:[LoginGuard], children:[
     {path:'loginChild', component:LoginChildComponent},
     {path:'regist', component:RegistComponent},
     {path:'', redirectTo:'loginChild', pathMatch:'full'}
