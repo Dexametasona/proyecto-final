@@ -48,14 +48,21 @@ export class AppComponent implements OnInit, OnDestroy{
       })
     }
   }
+  mostrar(){
+    alert(this.status)
+  }
   ngOnInit(): void {
-    this.Subscript=this.db.getstatus().subscribe(res=>{
-      this.status=res[0].status
-      this.name=res[0].name
-      this.type=res[0].type
-    })
+    // this.Subscript=this.db.getstatus().subscribe(res=>{
+    //   this.status=res[0].status
+    //   this.name=res[0].name
+    //   this.type=res[0].type
+    // })
+    // this.status=this.db.estado.status;
+    // this.name=this.db.estado.name;
+    // this.type!=this.db.estado.type;
+    
   }
   ngOnDestroy(): void {
-    this.Subscript.unsubscribe()
+    // this.Subscript.unsubscribe()
   }
 }

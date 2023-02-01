@@ -20,11 +20,11 @@ export class LoginChildComponent implements OnInit, OnDestroy{
       Validators.required, 
       Validators.minLength(10), 
       Validators.pattern('^[a-zA-ZÀ-ÿ0-9.-_]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$')]),
-    pass: new FormControl('',[
-      Validators.required, 
-      Validators.minLength(6)])
-  });
-
+      pass: new FormControl('',[
+        Validators.required, 
+        Validators.minLength(6)])
+      });
+      
   title='Iniciar Sesión';
   listUser:User[]=[];
   suscript!:Subscription;
@@ -38,14 +38,15 @@ export class LoginChildComponent implements OnInit, OnDestroy{
           if(i.email=='master@gmail.com'){
             var tipo='master';
           }else tipo='user';
-
+          
           let status={
             status:true,
             email:i.email,
             type:tipo,
             name:i.name
           }
-          this.db.updateStatus(status).then(res=>console.log('usuario actualizado')).catch(err=>console.log(err))
+          this.db.updateEstado$(status)
+          
         }
       }
       Swal.fire({
@@ -53,7 +54,7 @@ export class LoginChildComponent implements OnInit, OnDestroy{
         title:'Inicio de sesión exitoso',
         heightAuto:false
       })
-      this.route.navigate(['/home'])
+      // this.route.navigate(['/home'])
     }).catch((err:FirebaseError)=>{
       if (err.code==='auth/user-not-found') this.mensaje='Usuario no encontrado';
       else if(err.code==='auth/wrong-password') this.mensaje='Contraseña inválida'
@@ -80,11 +81,10 @@ export class LoginChildComponent implements OnInit, OnDestroy{
       label.style.opacity='50%';
     }
   }
-
-
   ngOnInit(): void {
     this.suscript=this.db.getUser().subscribe(res=>this.listUser=res)
   }
+    
   ngOnDestroy(): void {
     this.suscript.unsubscribe
   }
