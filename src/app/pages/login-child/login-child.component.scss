@@ -1,0 +1,14 @@
+.box-input{
+    label{
+        transition: all ease-in-out 0.5s;
+        position: absolute;
+        top: 24px;
+        left: 1rem;
+        opacity: 50%;
+    }
+}
+.prueba{
+    transform: translate(-5px,-23px) rotate3d(1, 0, 0, 360deg);
+    font-weight: bold;
+    
+}

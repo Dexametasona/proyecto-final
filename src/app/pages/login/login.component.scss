@@ -1,0 +1,25 @@
+:host{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.2);
+}
+.login{
+    height: 80vh;
+    width: 50vw;
+    h2{
+        font-family: 'Nunito', sans-serif;
+    }
+}
+.login-side{
+    background: linear-gradient( to right,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6)
+    ), url('https://cutewallpaper.org/cdn-cgi/mirage/dd19f2d06ebc24f541f142b37b4289ffa7de722a7607e39984c5c6dd4ce8defd/1280/23x/dplczg9gm/275674423.jpg');
+    background-size: cover;
+    h2{
+        font-family: 'Roboto', sans-serif;
+    }
+}
+
