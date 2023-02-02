@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
       if (page>this.page_number) this.page_number+=1
     }
     else if(e=='-'){
-      if (this.page_number>0) this.page_number-=1
+      if (this.page_number>1) this.page_number-=1
     }
     else if(this.page_size_list.includes(Number(e))){
       this.page_size=Number(e)

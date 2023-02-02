@@ -16,7 +16,7 @@ export class RegProdComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
     descript: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(300)]),
     costo: new FormControl(0, [Validators.required, Validators.min(0)]),
-    oferta: new FormControl(null, [Validators.min(0)]),
+    oferta: new FormControl(null, [Validators.min(0),Validators.max(0.7)]),
     imagen: new FormControl('', [Validators.required]),
   })
   /* registrar nuevos productos----------------------------------- */

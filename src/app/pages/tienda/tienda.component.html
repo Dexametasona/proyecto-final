@@ -1,5 +1,18 @@
+<!-- barra de paginacion--------------------------------------------- -->
+<div class=" p-2 pt-5 mx-2 text-slate-200 ">
+  <span class="text-xl ml-2">Vista:</span>
+  <select (click)="paginar(pag.value)" #pag class="shadow appearance-none border rounded py-1 px-3 text-center font-bold leading-tight bg-transparent focus:outline-none hover:bg-gray-100 hover:text-slate-700 cursor-pointer">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+  </select>
+  <span class="font-bold text-xl mx-3">Pagina {{page_number}} de {{listaProd.length/page_size | mathCeil}}</span>
+  <button (click)="paginar('-')" class="bg-white hover:bg-lime-300 text-gray-800 font-semibold py-1 px-4 border border-gray-400 rounded shadow"><span class="bi bi-arrow-bar-left"></span></button>
+  <button (click)="paginar('+')" class="bg-white hover:bg-lime-300 text-gray-800 font-semibold py-1 px-4 border border-gray-400 rounded shadow"><span class="bi bi-arrow-bar-right"></span></button>
+</div>
+<!-- producto card-------------------------------------------------------- -->
 <div  class="box w-10/12 mx-auto">
-  <div *ngFor="let x of listaProd" class="rounded-lg shadow-lg p-3">
+  <div *ngFor="let x of listaProd | paginacion:page_size:page_number" class="card rounded-lg p-3">
     <div>
       <div>
         <h2 class="text-center mb-3 font-bold">{{x.name | uppercase}}</h2>
@@ -8,9 +21,9 @@
         <img [src]="x.imagen">
       </div>
     </div>
-    <div class="flex justify-between px-4 border-2 text-xl">
+    <div class="flex justify-between px-4 text-xl">
       <span [ngClass]="x.oferta? 'line-through':''">Precio: S/ {{x.costo}}.00</span>
-      <span *ngIf="x.oferta" class="text-green-500"> Oferta: {{x.costo*(1-x.oferta!) |number : '1.2-2'}}</span>
+      <span *ngIf="x.oferta" class=" font-bold text-green-700"> Oferta: {{x.costo*(1-x.oferta!) |number : '1.2-2'}}</span>
     </div>
     <div class="my-3 flex justify-between ">
       <button class="text-white bg-gradient-to-br from-amber-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="modal(x)">Añadir <span class="bi bi-cart-check"></span></button>
