@@ -39,7 +39,9 @@
         <td class="px-6 py-4">{{x.name}}</td>
         <td class="px-6 py-4">{{x.costo}}</td>
         <td class="px-6 py-4">{{x.oferta}}</td>
-        <td class="px-6 py-4"></td>
+        <td class="px-6 py-4">
+            <button class="text-white bg-gradient-to-br from-green-600 to-lime-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="mostrar(x.id)" >Detalles</button>
+        </td>
         <td class="px-6 py-2">
             <button class="text-white bg-gradient-to-br from-rose-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="borrar(x)">
                 <span class="bi bi-trash"></span>

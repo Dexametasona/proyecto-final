@@ -10,10 +10,12 @@ import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { LoginGuard } from './guards/login.guard';
 import { ProductComponent } from './pages/product/product.component';
 import { RegProdComponent } from './pages/reg-prod/reg-prod.component';
+import { DetallesComponent } from './pages/detalles/detalles.component';
 
 
 const routes: Routes = [
   {path:'home', component:HomeComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
+  {path:'detail/:id', component:DetallesComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
   {path:'prod', component:ProductComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
   {path:'regProd', component:RegProdComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
   {path:'login', component:LoginComponent, canActivate:[LoginGuard], children:[

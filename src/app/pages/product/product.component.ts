@@ -1,6 +1,7 @@
 import { DataProdService } from 'src/app/service/data-prod.service';
 import { Iproduct } from './../../interfaces/iprod';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -27,7 +28,10 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  constructor(private dbprod:DataProdService) { }
+  constructor(private dbprod:DataProdService, private route:Router) { }
+  mostrar(id:string){
+    this.route.navigate(['/detail', id])
+  }
 
   borrar(prod:Iproduct){
     this.dbprod.deleteProd(prod)

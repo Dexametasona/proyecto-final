@@ -44,7 +44,8 @@ import { DetallesComponent } from './detalles/detalles.component';
     LoginChildComponent,
     ProductComponent,
     RegProdComponent,
-    CarouselComponent
+    CarouselComponent,
+    DetallesComponent
   ],
 })
 export class PagesModule { }

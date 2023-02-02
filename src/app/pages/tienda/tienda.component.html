@@ -1,1 +1,22 @@
-<p>tienda works!</p>
+<div  class="box w-10/12 mx-auto">
+  <div *ngFor="let x of listaProd" class="rounded-lg shadow-lg p-3">
+    <div>
+      <div>
+        <h2 class="text-center mb-3 font-bold">{{x.name | uppercase}}</h2>
+      </div>
+      <div>
+        <img [src]="x.imagen">
+      </div>
+    </div>
+    <div class="flex justify-between px-4 border-2 text-xl">
+      <span [ngClass]="x.oferta? 'line-through':''">Precio: S/ {{x.costo}}.00</span>
+      <span *ngIf="x.oferta" class="text-green-500"> Oferta: {{x.costo/x.oferta! |number : '1.2-2'}}</span>
+    </div>
+    <div class="my-3 flex justify-between ">
+      <button class="text-white bg-gradient-to-br from-amber-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2">Añadir <span class="bi bi-cart-check"></span></button>
+      <button class="text-white bg-gradient-to-br from-green-600 to-lime-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="mostrar(x.id!)">Detalles</button>
+    
+    </div>
+  </div>
+</div>
+
