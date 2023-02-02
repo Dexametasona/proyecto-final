@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataService } from '../service/data.service';
 
@@ -11,10 +11,14 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.db.estado.type=='master'){
+
       return true
-    }else return false
+    }else{
+      this.route.navigate(['/home'])
+      return false
+    }
 
   }
-  constructor(private db:DataService){}
+  constructor(private db:DataService, private route:Router){}
   
 }
