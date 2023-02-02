@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  @Input() oculto!:boolean
+  @Input() oculto!:boolean;
   @Output() emitirEstado=new EventEmitter<boolean>();
   @Input() producto!:Iproduct;
 

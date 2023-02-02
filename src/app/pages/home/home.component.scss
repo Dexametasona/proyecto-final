@@ -8,7 +8,11 @@
     grid-template: repeat(1, min-content)/repeat(4, 1fr);
     gap: 1rem;
     img{
-        width: 100%;
+        width: 80%;
         height: 40vh;
+        transition: all ease-in-out 0.3s;
+        &:hover{
+            transform: scale(1.05, 1.05);
+        }
     }
 }

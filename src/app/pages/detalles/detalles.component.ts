@@ -11,19 +11,30 @@ import {Location} from '@angular/common';
 })
 export class DetallesComponent implements OnInit {
   id!:string|null;
-  producto!:Iproduct;
+  producto:Iproduct={
+    name:'',
+    imagen:'',
+    descript:'',
+    costo:0
+  }
+  oculto=false;
   constructor(private _location:Location, private router:ActivatedRoute, private dbprod:DataProdService) { }
 
   ngOnInit(): void {
     this.id=this.router.snapshot.paramMap.get('id')
-    console.log(this.id)
-
     this.dbprod.getProdOnly(this.id || '').subscribe(res=>{
       this.producto=res;
     })
   }
   back(){
     this._location.back()
+  }
+  recibirEstado(estado:boolean){
+    this.oculto=estado;
+  }
+  modal(){
+    console.log('olluco')
+    this.oculto=true;
   }
 
 }

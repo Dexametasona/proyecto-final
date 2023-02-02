@@ -12,7 +12,7 @@
 </div>
 <!-- producto card-------------------------------------------------------- -->
 <div  class="box w-10/12 mx-auto">
-  <div *ngFor="let x of listaProd | paginacion:page_size:page_number" class="card rounded-lg p-3">
+  <div *ngFor="let x of listaProd | paginacion:page_size:page_number" class="card rounded-lg p-3 relative">
     <div>
       <div>
         <h2 class="text-center mb-3 font-bold">{{x.name | uppercase}}</h2>
@@ -28,7 +28,9 @@
     <div class="my-3 flex justify-between ">
       <button class="text-white bg-gradient-to-br from-amber-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="modal(x)">Añadir <span class="bi bi-cart-check"></span></button>
       <button class="text-white bg-gradient-to-br from-green-600 to-lime-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="mostrar(x.id!)">Detalles</button>
-    
+    </div>
+    <div class="absolute top-12 right-6 bg-red-500 rounded-b-md" *ngIf="x.oferta">
+      <span class="text-white font-bold py-1 px-2">-{{x.oferta | percent}}</span>
     </div>
   </div>
 </div>
