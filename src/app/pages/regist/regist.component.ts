@@ -84,6 +84,8 @@ export class RegistComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.suscript.unsubscribe()
   }
-
+  mostrar(){
+    
+  }
 
 }
