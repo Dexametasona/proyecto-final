@@ -1,53 +1,55 @@
-<div class="bg-gray-700 py-2 mt-5 mx-2">
+<!-- barra de paginacion -->
+<div class="bg-gray-700 p-2 mt-5 mx-2">
   <button (click)="paginar('-')" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-4 border border-gray-400 rounded shadow">prev</button>
   <button (click)="paginar('+')" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-4 border border-gray-400 rounded shadow">next</button>
   <span class="text-xl ml-2 text-white">Vista:</span>
   <select (click)="paginar(pag.value)" #pag class="shadow appearance-none border rounded py-1 px-3 text-gray-700 font-bold leading-tight focus:outline-none hover:bg-gray-100 cursor-pointer">
+      <option value="5">5</option>
       <option value="10">10</option>
-      <option value="25">25</option>
-      <option value="50">50</option>
-      <option value="100">100</option>
+      <option value="20">20</option>
   </select>
+  <span class="text-white font-bold text-xl mx-3">Pagina {{page_number}} de {{listProd.length/page_size | mathCeil}}</span>
 </div>
+<!-- tabla------------------------------------------ -->
 <div class="relative overflow-x-auto mx-2">
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-      <tr>
-          <th scope="col" class="px-6 py-3">
-              Id
-          </th>
-          <th scope="col" class="px-6 py-3">
-              Nombre del producto
-          </th>
-          <th scope="col" class="px-6 py-3">
-              Costo
-          </th>
-          <th scope="col" class="px-6 py-3">
-              Oferta
-          </th>
-          <th scope="col" class="px-6 py-3">
-              Total
-          </th>
-          <th scope="col" class="px-6 py-3">
-              Acción
-          </th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" *ngFor="let x of listProd | paginacion:page_size:page_number, let i=index">
-      <td class="px-6 py-4">{{i+1}}</td>
-      <td class="px-6 py-4">{{x.name |uppercase}}</td>
-      <td class="px-6 py-4">S/{{x.costo |number : '1.2-2'}}</td>
-      <td class="px-6 py-4">{{x.unid}} unid.</td>
-      <td class="px-6 py-4">S/{{x.unid*x.costo |number : '1.2-2'}}</td>
-      <td class="px-6 py-2">
-          <button class="text-white bg-gradient-to-br from-rose-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="borrar(x)">
-              <span class="bi bi-trash"></span>
-          </button>
-      </td>
-      </tr>
-  </tbody>
-</table>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">
+                Id
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Nombre del producto
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Costo
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Oferta
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Total
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Acción
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" *ngFor="let x of listProd | paginacion:page_size:page_number, let i=index">
+        <td class="px-6 py-4">{{i+1}}</td>
+        <td class="px-6 py-4">{{x.name |uppercase}}</td>
+        <td class="px-6 py-4">S/{{x.costo |number : '1.2-2'}}</td>
+        <td class="px-6 py-4">{{x.unid}} unid.</td>
+        <td class="px-6 py-4">S/{{x.unid*x.costo |number : '1.2-2'}}</td>
+        <td class="px-6 py-2">
+            <button class="text-white bg-gradient-to-br from-rose-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="borrar(x)">
+                <span class="bi bi-trash"></span>
+            </button>
+        </td>
+        </tr>
+    </tbody>
+  </table>
 <div class="flex justify-center mt-6">
   <button class="text-white bg-gradient-to-br from-green-600 to-green-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2 disabled:bg-gradient-to-br disabled:from-purple-300 disabled:to-blue-200 button">Comprar</button>
 

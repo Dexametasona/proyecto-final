@@ -9,9 +9,9 @@ import { CarService } from 'src/app/service/car.service';
 })
 export class CarritoComponent implements OnInit {
   listProd:ICarProd[]=[]
-  page_size=10;
+  page_size=5;
   page_number=1;
-  page_size_list=[10,25,50,100]
+  page_size_list=[5,10,20]
 
   paginar(e:string){
     let page=Math.ceil(this.listProd.length/this.page_size);

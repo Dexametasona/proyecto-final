@@ -1,3 +1,4 @@
+import { AdminGuard } from './guards/admin.guard';
 import { LoginChildComponent } from './pages/login-child/login-child.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { TiendaComponent } from './pages/tienda/tienda.component';
@@ -16,8 +17,8 @@ import { DetallesComponent } from './pages/detalles/detalles.component';
 const routes: Routes = [
   {path:'home', component:HomeComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
   {path:'detail/:id', component:DetallesComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
-  {path:'prod', component:ProductComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
-  {path:'regProd', component:RegProdComponent,  ...canActivate(()=>redirectUnauthorizedTo(['/login/loginChild']))},
+  {path:'prod', component:ProductComponent, canActivate:[AdminGuard]},
+  {path:'regProd', component:RegProdComponent,canActivate:[AdminGuard]},
   {path:'login', component:LoginComponent, canActivate:[LoginGuard], children:[
     {path:'loginChild', component:LoginChildComponent},
     {path:'regist', component:RegistComponent},

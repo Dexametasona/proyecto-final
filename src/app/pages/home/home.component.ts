@@ -15,19 +15,29 @@ export class HomeComponent implements OnInit {
   listDestacado:Iproduct[]=[]
   constructor(private db:DataProdService, private route:Router) { }
   public carouselData:Icarousel[]=CAROUSEL_DATA_ITEMS;
-
+/* boton detalles-------------------------------------------------- */
   mostrar(id:string){
     this.route.navigate(['/detail', id])
   }
   
   ngOnInit(): void {
+    /* consumimos la base de datos y generamos un producto aleatorio */
     this.db.getProd().subscribe(res=>{
-      let recordar=-1
+      let recordar=[-1]
       while(this.listDestacado.length<4){
-        let random=Math.floor(Math.random()*10)
-        if(random!=recordar){
+        let random=Math.floor(Math.random()*res.length)
+        let verificar=false
+        for(let i of recordar){
+          if(random==i){
+            verificar=false
+            break
+          }else{
+            verificar=true
+          }
+        }
+        if(verificar){
           this.listDestacado.push(res[random])
-          recordar=random
+          recordar.push(random)
         }
       }
     })

@@ -14,6 +14,7 @@ import { RegProdComponent } from './reg-prod/reg-prod.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { DetallesComponent } from './detalles/detalles.component';
 import { ModalComponent } from './modal/modal.component';
+import { MathCeilPipe } from '../pipes/math-ceil.pipe';
 
 
 
@@ -30,12 +31,13 @@ import { ModalComponent } from './modal/modal.component';
     CarouselComponent,
     PaginacionPipe,
     DetallesComponent,
-    ModalComponent
+    ModalComponent,
+    MathCeilPipe
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule,
+    RouterModule
   ],
   exports: [
     HomeComponent,

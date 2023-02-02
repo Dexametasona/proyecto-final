@@ -15,6 +15,7 @@ import { getAuth } from 'firebase/auth';
   styleUrls: ['./login-child.component.scss']
 })
 export class LoginChildComponent implements OnInit, OnDestroy{
+  /* formulario---------------------------------- */
   constructor(private auth:AuthService, private route:Router, private db:DataService) { }
   form= new FormGroup({
     email: new FormControl('',[
@@ -29,18 +30,19 @@ export class LoginChildComponent implements OnInit, OnDestroy{
   title='Iniciar Sesión';
   listUser:User[]=[];
   suscript1!:Subscription;
-  suscript2!:Subscription;
   alert=false;
-
   mensaje!:string;
+  /* funcion para iniciar sesion */
   login(){
+    /* conertimos el formulario al objeto de la interfaz */
     this.auth.signUser(this.form.value as {email:string, pass:string}).then(res=>{
+      /* verificar si el usuario es el admin o uno normal---------------------- */
       for(let i of this.listUser){
         if(i.email==this.form.get('email')?.value){
           if(i.email=='master@gmail.com'){
             var tipo='master';
           }else tipo='user';
-          
+          /* se acutaliza el estado del login en el servicio */
           let status={
             status:true,
             email:i.email,
@@ -58,6 +60,7 @@ export class LoginChildComponent implements OnInit, OnDestroy{
       })
       this.route.navigate(['/home'])
     }).catch((err:FirebaseError)=>{
+      /* captura de errores */
       if (err.code==='auth/user-not-found') this.mensaje='Usuario no encontrado';
       else if(err.code==='auth/wrong-password') this.mensaje='Contraseña inválida'
       else console.log(err.code)
@@ -69,7 +72,7 @@ export class LoginChildComponent implements OnInit, OnDestroy{
     })
 
   }
-
+/* animacion de los inputs */
   animacionIn(Label:string ){
     let label=document.getElementById(Label) as HTMLLabelElement
     label.classList.add('prueba')

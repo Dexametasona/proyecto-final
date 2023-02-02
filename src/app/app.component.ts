@@ -21,7 +21,9 @@ export class AppComponent implements OnInit, OnDestroy{
   type!:string;
 
   constructor(private auth:AuthService, private route:Router, private db:DataService) {}
+  /* boton logout------------------------------------------ */
   logout(){
+    /* verifica si hay usuario logeado */
     const auth=getAuth()
     const user=auth.currentUser;
     if(user!=null){
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy{
         showConfirmButton:true
       }).then(async (res)=>{
         if(res.isConfirmed){
+          /* funcion para logout */
           await this.auth.logout().then(()=>console.log('sesión cerrada')).catch(err=>console.log('ocurrio un error: '+err))
           let status={
             status:false,
@@ -52,6 +55,7 @@ export class AppComponent implements OnInit, OnDestroy{
     
   }
   ngOnInit(): void {
+    /* verificador de usuario previamente logeado----------------------- */
     this.db.getUser().subscribe(res=>{
       this.listUser=res
       const auth = getAuth();
@@ -80,6 +84,7 @@ export class AppComponent implements OnInit, OnDestroy{
     })
     
     });
+    /* actualizar la informacion de estados del servicio */
     this.Subscript=this.db.getEstado$().subscribe(res=>{
       this.status=res.status
       this.name=res.name

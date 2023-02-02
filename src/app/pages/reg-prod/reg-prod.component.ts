@@ -9,8 +9,9 @@ import { DataProdService } from 'src/app/service/data-prod.service';
   styleUrls: ['./reg-prod.component.scss']
 })
 export class RegProdComponent implements OnInit {
-  alert!:boolean
-  mensaje!:string
+  alert!:boolean;
+  mensaje!:string;
+  /* formulario de registro de nuevos productos------------------------------------------------------- */
   form=new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
     descript: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(300)]),
@@ -18,6 +19,7 @@ export class RegProdComponent implements OnInit {
     oferta: new FormControl(null, [Validators.min(0)]),
     imagen: new FormControl('', [Validators.required]),
   })
+  /* registrar nuevos productos----------------------------------- */
   regist(){
     this.datos.addProd(this.form.value as Iproduct)
     this.form.reset()

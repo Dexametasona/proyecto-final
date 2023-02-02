@@ -1,3 +1,4 @@
+<!--llamamos al componente carrusel--------------------  -->
 <div class="w-full mb-5">
   <div class="bg-slate-900 h-100">
     <div class="w-full px-0">
@@ -5,6 +6,7 @@
     </div>
   </div>
 </div>
+<!-- productos aleatorios------------------------------------------- -->
 <div class="box">
   <div *ngFor="let x of listDestacado" class="box__child shadow rounded">
     <div>
@@ -17,7 +19,7 @@
     </div>
     <div class="flex justify-between px-4 border-2">
       <span [ngClass]="x.oferta? 'line-through':''">Precio: S/ {{x.costo}}.00</span>
-      <span *ngIf="x.oferta" class="text-green-500"> Oferta: {{x.costo/x.oferta! |number : '1.2-2'}}</span>
+      <span *ngIf="x.oferta" class="text-green-500"> Oferta: {{x.costo*(1-x.oferta!) |number : '1.2-2'}}</span>
     </div>
     <div class="my-3 flex justify-center">
       <button class="text-white bg-gradient-to-br from-green-600 to-lime-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="mostrar(x.id!)">Detalles</button>

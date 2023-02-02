@@ -63,6 +63,7 @@ export class RegistComponent implements OnInit, OnDestroy {
     }, 4000);
     
   }
+  /* opcion cancelar */
   cancelar(){
     Swal.fire({
       icon:'question',
@@ -84,8 +85,4 @@ export class RegistComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.suscript.unsubscribe()
   }
-  mostrar(){
-    
-  }
-
 }
