@@ -13,6 +13,7 @@ import { ProductComponent } from './product/product.component';
 import { RegProdComponent } from './reg-prod/reg-prod.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { DetallesComponent } from './detalles/detalles.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -28,7 +29,8 @@ import { DetallesComponent } from './detalles/detalles.component';
     RegProdComponent,
     CarouselComponent,
     PaginacionPipe,
-    DetallesComponent
+    DetallesComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { DetallesComponent } from './detalles/detalles.component';
     ProductComponent,
     RegProdComponent,
     CarouselComponent,
-    DetallesComponent
+    DetallesComponent,
+    ModalComponent
   ],
 })
 export class PagesModule { }

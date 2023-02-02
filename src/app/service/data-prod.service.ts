@@ -1,7 +1,7 @@
 import { Iproduct } from './../interfaces/iprod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { collection, collectionData, Firestore, deleteDoc} from '@angular/fire/firestore';
+import { collection, collectionData, Firestore, deleteDoc, docData} from '@angular/fire/firestore';
 import { addDoc, doc } from '@firebase/firestore';
 
 @Injectable({
@@ -23,6 +23,10 @@ export class DataProdService {
   deleteProd(prod:Iproduct){
     const prodRef= doc(this.firestore, `prodList/${prod.id}`);
     return deleteDoc(prodRef)
+  }
+  getProdOnly(prod:string):Observable<Iproduct>{
+    const prodRef=doc(this.firestore, `prodList/${prod}`)
+    return docData(prodRef) as Observable<Iproduct>
   }
 
 }

@@ -1,4 +1,8 @@
+import { Iproduct } from './../../interfaces/iprod';
+import { DataProdService } from 'src/app/service/data-prod.service';
+import { ActivatedRoute} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detalles',
@@ -6,10 +10,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detalles.component.scss']
 })
 export class DetallesComponent implements OnInit {
-
-  constructor() { }
+  id!:string|null;
+  producto!:Iproduct;
+  constructor(private _location:Location, private router:ActivatedRoute, private dbprod:DataProdService) { }
 
   ngOnInit(): void {
+    this.id=this.router.snapshot.paramMap.get('id')
+    console.log(this.id)
+
+    this.dbprod.getProdOnly(this.id || '').subscribe(res=>{
+      this.producto=res;
+    })
+  }
+  back(){
+    this._location.back()
   }
 
 }

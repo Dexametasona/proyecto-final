@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class TiendaComponent implements OnInit {
   listaProd:Iproduct[]=[]
+  oculto=false;
+  producto!:Iproduct;
   constructor(private db:DataProdService, private route:Router) { }
 
   ngOnInit(): void {
@@ -19,6 +21,13 @@ export class TiendaComponent implements OnInit {
   }
   mostrar(id:string){
     this.route.navigate(['/detail', id])
+  }
+  modal(prod:Iproduct){
+    this.oculto=true,
+    this.producto=prod
+  }
+  recibirEstado(estado:boolean){
+    this.oculto=estado;
   }
 
 
