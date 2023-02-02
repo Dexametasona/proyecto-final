@@ -75,12 +75,19 @@ export class AppComponent implements OnInit, OnDestroy{
                 name:i.name
               }
               this.db.updateEstado$(status)
-              console.log('usario previo actuliazo al obs')
+              console.log('usario previo se actualiza al obs')
               break
-            }else console.log('error en el usaurio')
+            }
           }
         } else {
-          console.log('no hay usuario previo')
+          console.log('no hay usuario previo por el momento')
+          let status={
+            status:false,
+            email:'',
+            type:'',
+            name:''
+          }
+          this.db.updateEstado$(status)
         }
     })
     

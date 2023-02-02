@@ -6,6 +6,7 @@ import { User } from 'src/app/interfaces/user';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { getAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-logout',
@@ -38,7 +39,7 @@ export class RegistComponent implements OnInit, OnDestroy {
   ListaUser:User[]=[]
 
   
-  regist(){
+  async regist(){
     /* verificador--------------------------- */ 
     let status=false
     for(let i of this.ListaUser){
@@ -51,10 +52,15 @@ export class RegistComponent implements OnInit, OnDestroy {
     }
     /* registrar nuevo usuario */
     if(status==false){
-      this.db.addUser(this.form.value as User)
-      this.auth.registUser(this.form.value as {email:string, pass:string})
+      /* agreaga a la base de datos---------------------------------------- */
+      await this.db.addUser(this.form.value as User)  
+        /* agrega a la bd auth e inicia sesion????-------------------------------------------------------- */
+      await this.auth.registUser(this.form.value as {email:string, pass:string})
+      .then(x=>console.log('usuario registrado en bd personal'))
+      .catch(x=>console.log(x))
       this.mensaje='Nuevo usuario registrado.';
       this.form.reset()
+      await this.auth.logout()
     }else this.mensaje='Correo ya existente, intentelo otra vez.';
     /* disparador de la alerta............................... */
     this.alert=true;
@@ -84,5 +90,15 @@ export class RegistComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.suscript.unsubscribe()
+  }
+  logeado(){
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      console.log(user.email)
+    } else {
+      console.log('no hay usuairo logeado')
+    }
   }
 }
