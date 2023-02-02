@@ -25,7 +25,7 @@ export class RegistComponent implements OnInit, OnDestroy {
     email:new FormControl('',[
       Validators.required,
       Validators.minLength(10),
-      Validators.pattern('^[a-zA-ZÀ-ÿ0-9.-_]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$')
+      Validators.pattern('^[a-zA-ZÀ-ÿ0-9.\\-_]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$')
     ]),
     pass: new FormControl('',[
       Validators.required, 
