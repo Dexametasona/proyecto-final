@@ -60,7 +60,8 @@ export class RegistComponent implements OnInit, OnDestroy {
       .catch(x=>console.log(x))
       this.mensaje='Nuevo usuario registrado.';
       this.form.reset()
-      await this.auth.logout()
+      // await this.auth.logout()
+      this.route.navigate(['/home'])
     }else this.mensaje='Correo ya existente, intentelo otra vez.';
     /* disparador de la alerta............................... */
     this.alert=true;
@@ -91,14 +92,5 @@ export class RegistComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.suscript.unsubscribe()
   }
-  logeado(){
-    const auth = getAuth();
-    const user = auth.currentUser;
 
-    if (user) {
-      console.log(user.email)
-    } else {
-      console.log('no hay usuairo logeado')
-    }
-  }
 }

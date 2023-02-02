@@ -1,11 +1,12 @@
-<nav class="flex h-10 shadow-lg" *ngIf="status">
-  <ul class="w-2/3 flex justify-between text-xl bg-slate-200 px-3 font-bold">
+<nav class="flex h-12 shadow-lg" *ngIf="status">
+  <ul class="w-2/3 flex justify-between bg-slate-200 px-3 font-bold">
     <li routerLinkActive="bg-slate-300" class="px-3 hover:bg-slate-300 h-full flex items-center"><a routerLink="/home">Inicio</a></li>
-    <li routerLinkActive="bg-slate-300" class="px-3 hover:bg-slate-300 text-lg h-full flex items-center"><a routerLink="/car">Carrito <span class="bi bi-cart-check-fill"></span></a></li>
+    <li routerLinkActive="bg-slate-300" class="px-3 hover:bg-slate-300 h-full flex items-center"><a routerLink="/car">Carrito <span class="bi bi-cart-check-fill"></span></a></li>
     <li routerLinkActive="bg-slate-300" class="px-3 hover:bg-slate-300 h-full flex items-center"><a routerLink="/tienda">Tienda</a></li>
-    <li routerLinkActive="bg-slate-300" class="px-3 hover:bg-slate-300 h-full text-base flex items-center" *ngIf="type=='master'"><a routerLink="/prod">List Product</a></li>
-    <li routerLinkActive="bg-slate-300" class="px-3 hover:bg-slate-300 h-full text-base flex items-center" *ngIf="type=='master'"><a routerLink="/regProd">New Product</a></li>
+    <li routerLinkActive="bg-slate-300" class="px-3 hover:bg-slate-300 h-full flex items-center" *ngIf="type=='master'"><a routerLink="/prod">List Product</a></li>
+    <li routerLinkActive="bg-slate-300" class="px-3 hover:bg-slate-300 h-full flex items-center" *ngIf="type=='master'"><a routerLink="/regProd">New Product</a></li>
   </ul>
+  <button><span class="bi bi-arrows-expand"></span></button>
   <ul class="w-1/3 flex flex-row-reverse font-bold">
     <li class="flex px-3 hover:bg-slate-300 h-full flex items-center cursor-pointer">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
