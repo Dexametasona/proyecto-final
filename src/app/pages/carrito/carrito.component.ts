@@ -12,6 +12,7 @@ export class CarritoComponent implements OnInit {
   page_size=5;
   page_number=1;
   page_size_list=[5,10,20]
+  total=0
 
   paginar(e:string){
     let page=Math.ceil(this.listProd.length/this.page_size);
@@ -33,6 +34,11 @@ export class CarritoComponent implements OnInit {
   }
   ngOnInit(): void {  
     this.dbcarro.getProd().subscribe(res=>{
+      /* funcion para total-------------------------------------------------------- */
+      this.total=0
+      for(let i of res){
+        this.total+= i.costo*i.unid;
+      }
       this.listProd=res
     })
   }

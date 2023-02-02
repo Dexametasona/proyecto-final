@@ -61,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy{
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log('Usuario en linea')
+          console.log('Usuario previo en linea')
           for(let i of this.listUser){
             if(i.email==user.email){
               if(i.email=='master@gmail.com'){
@@ -75,8 +75,9 @@ export class AppComponent implements OnInit, OnDestroy{
                 name:i.name
               }
               this.db.updateEstado$(status)
+              console.log('usario previo actuliazo al obs')
               break
-            }else console.log('error')
+            }else console.log('error en el usaurio')
           }
         } else {
           console.log('no hay usuario previo')
