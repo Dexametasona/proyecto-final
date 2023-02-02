@@ -1,4 +1,7 @@
+import { Iproduct } from './../../interfaces/iprod';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { DataProdService } from 'src/app/service/data-prod.service';
 
 @Component({
   selector: 'app-reg-prod',
@@ -6,8 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reg-prod.component.scss']
 })
 export class RegProdComponent implements OnInit {
-
-  constructor() { }
+  alert!:boolean
+  mensaje!:string
+  form=new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
+    descript: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(300)]),
+    costo: new FormControl(0, [Validators.required, Validators.min(0)]),
+    oferta: new FormControl(null, [Validators.min(0)]),
+    imagen: new FormControl('', [Validators.required]),
+  })
+  regist(){
+    this.datos.addProd(this.form.value as Iproduct)
+    this.form.reset()
+    this.mensaje='producto registrado exitosamente'
+    this.alert=true;
+    setTimeout(() => {
+      this.alert=false;
+    }, 4000);
+    
+  }
+  constructor(private datos:DataProdService) { }
 
   ngOnInit(): void {
   }

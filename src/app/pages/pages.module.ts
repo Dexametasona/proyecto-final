@@ -1,3 +1,4 @@
+import { PaginacionPipe } from './../pipes/paginacion.pipe';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,8 @@ import { RegistComponent } from './regist/regist.component';
 import { LoginChildComponent } from './login-child/login-child.component';
 import { ProductComponent } from './product/product.component';
 import { RegProdComponent } from './reg-prod/reg-prod.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { DetallesComponent } from './detalles/detalles.component';
 
 
 
@@ -22,12 +25,15 @@ import { RegProdComponent } from './reg-prod/reg-prod.component';
     RegistComponent,
     LoginChildComponent,
     ProductComponent,
-    RegProdComponent
+    RegProdComponent,
+    CarouselComponent,
+    PaginacionPipe,
+    DetallesComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     HomeComponent,
@@ -37,7 +43,8 @@ import { RegProdComponent } from './reg-prod/reg-prod.component';
     RegistComponent,
     LoginChildComponent,
     ProductComponent,
-    RegProdComponent
+    RegProdComponent,
+    CarouselComponent
   ],
 })
 export class PagesModule { }

@@ -2,9 +2,10 @@ import { Subscription } from 'rxjs';
 import { DataService } from './service/data.service';
 import { AuthService } from './service/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { User } from './interfaces/user';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2';
 export class AppComponent implements OnInit, OnDestroy{
   title = 'proyecto-final';
   Subscript!:Subscription;
+  listUser:User[]=[]
   status!:boolean;
   name!:string;
   type!:string;
@@ -38,7 +40,6 @@ export class AppComponent implements OnInit, OnDestroy{
             name:''
           }
           this.db.updateEstado$(status)
-          // await this.db.updateStatus(status).then(res=>console.log('logout')).catch(err=>console.log(err))
           this.route.navigate(['/login'])
         }
       })
@@ -48,15 +49,43 @@ export class AppComponent implements OnInit, OnDestroy{
         text:'Usuario no logeado'
       })
     }
-
+    
   }
   ngOnInit(): void {
+    this.db.getUser().subscribe(res=>{
+      this.listUser=res
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log('Usuario en linea')
+          for(let i of this.listUser){
+            if(i.email==user.email){
+              if(i.email=='master@gmail.com'){
+                var tipo='master';
+              }else tipo='user';
+              
+              let status={
+                status:true,
+                email:i.email,
+                type:tipo,
+                name:i.name
+              }
+              this.db.updateEstado$(status)
+              break
+            }else console.log('error')
+          }
+        } else {
+          console.log('no hay usuario previo')
+        }
+    })
+    
+    });
     this.Subscript=this.db.getEstado$().subscribe(res=>{
       this.status=res.status
       this.name=res.name
       this.type=res.type
     })
-    this.auth.logout().then(()=>console.log('sesión cerrada al inicio')).catch(err=>console.log('ocurrio un error: '+err))
+    
   }
   ngOnDestroy(): void {
     this.Subscript.unsubscribe()

@@ -1,5 +1,7 @@
+import { CAROUSEL_DATA_ITEMS } from './../../const/carousel.const';
+import { Icarousel } from './../../interfaces/icarousel';
 import { DataService } from './../../service/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private db:DataService) { }
-
+  constructor() { }
+  public carouselData:Icarousel[]=CAROUSEL_DATA_ITEMS;
   ngOnInit(): void {
   }
-  mostrar(){
-    alert(this.db.estado.status)
-    alert(this.db.estado.status)
-  }
+
 }

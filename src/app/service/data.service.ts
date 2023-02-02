@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { collectionData, doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { addDoc, collection } from '@firebase/firestore';
 import { Observable, Subject } from 'rxjs';
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,6 @@ export class DataService {
   getEstado$():Observable<UserStatus>{
     return this.estado$.asObservable();
   }
-
   addUser(user:User){
     const dataUserRef=collection(this.firestore, 'UserList');
     return addDoc(dataUserRef, user)

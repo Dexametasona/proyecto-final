@@ -84,13 +84,6 @@ export class LoginChildComponent implements OnInit, OnDestroy{
     }
   }
 
-  mostrar(){
-    const auth=getAuth()
-    const user=auth.currentUser;
-    console.log(user)
-    console.log(this.db.estado)
-  }
-
   ngOnInit(): void {
     this.suscript1=this.db.getUser().subscribe(res=>this.listUser=res)
   }
