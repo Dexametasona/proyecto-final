@@ -10,7 +10,7 @@
     </div>
     <div class="flex justify-between px-4 border-2 text-xl">
       <span [ngClass]="x.oferta? 'line-through':''">Precio: S/ {{x.costo}}.00</span>
-      <span *ngIf="x.oferta" class="text-green-500"> Oferta: {{x.costo/x.oferta! |number : '1.2-2'}}</span>
+      <span *ngIf="x.oferta" class="text-green-500"> Oferta: {{x.costo*(1-x.oferta!) |number : '1.2-2'}}</span>
     </div>
     <div class="my-3 flex justify-between ">
       <button class="text-white bg-gradient-to-br from-amber-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="modal(x)">Añadir <span class="bi bi-cart-check"></span></button>
@@ -19,4 +19,4 @@
     </div>
   </div>
 </div>
-<app-modal *ngIf="oculto" [oculto]="oculto" (emitirEstado)="recibirEstado($event)"></app-modal>
+<app-modal *ngIf="oculto" [oculto]="oculto" [producto]="producto" (emitirEstado)="recibirEstado($event)"></app-modal>

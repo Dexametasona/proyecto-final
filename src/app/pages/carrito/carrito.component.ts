@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ICarProd } from 'src/app/interfaces/iCarProd';
+import { CarService } from 'src/app/service/car.service';
 
 @Component({
   selector: 'app-carrito',
@@ -6,10 +8,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carrito.component.scss']
 })
 export class CarritoComponent implements OnInit {
+  listProd:ICarProd[]=[]
+  page_size=10;
+  page_number=1;
+  page_size_list=[10,25,50,100]
 
-  constructor() { }
+  paginar(e:string){
+    let page=Math.ceil(this.listProd.length/this.page_size);
+    if(e=='+'){
+      if (page>this.page_number) this.page_number+=1
+    }
+    else if(e=='-'){
+      if (this.page_number>0) this.page_number-=1
+    }
+    else if(this.page_size_list.includes(Number(e))){
+      this.page_size=Number(e)
+      this.page_number=1
+    }
+  }
+  constructor(private dbcarro:CarService) { }
 
-  ngOnInit(): void {
+  borrar(prod:ICarProd){
+    this.dbcarro.deleteProd(prod)
+  }
+  ngOnInit(): void {  
+    this.dbcarro.getProd().subscribe(res=>{
+      this.listProd=res
+    })
   }
 
 }

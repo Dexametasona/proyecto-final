@@ -3,7 +3,7 @@
     <!-- unidades------------------------------------------------------------------------- -->
     <div><label class="text-white font-bold" for="unit">Unidades: </label></div>
     <div class="relative mb-6">
-      <input type="number" name="unit" id="unit" placeholder="mínimo 0" class="bg-gray-50 border transition duration-250 ease-in-out text-gray-900 text-sm rounded-lg focus:ring-4 focus:ring-opacity-50 focus:outline-none block w-full p-2.5 pr-7" [ngClass]="form.get('unit')?.untouched || form.get('unit')?.valid? 'focus:ring-green-300 border-slate-300':'focus:ring-rose-300 border-red-300'" formControlName="unit">
+      <input type="number" name="unit" id="unit" placeholder="mínimo 1" class="bg-gray-50 border transition duration-250 ease-in-out text-gray-900 text-sm rounded-lg focus:ring-4 focus:ring-opacity-50 focus:outline-none block w-full p-2.5 pr-7" [ngClass]="form.get('unit')?.untouched || form.get('unit')?.valid? 'focus:ring-green-300 border-slate-300':'focus:ring-rose-300 border-red-300'" formControlName="unit">
       <!-- icons -->
       <div class="absolute top-2.5 right-1" *ngIf="form.get('unit')?.touched">
         <!-- check icon -->
@@ -30,14 +30,14 @@
           <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
           <span class="sr-only">Info</span>
           <div>
-            Valor <span class="font-bold">mínimo es 0.</span>
+            Valor <span class="font-bold">mínimo es 1.</span>
           </div>
         </div>
       </div>
     </div>
     <!-- botones---------------------------------------------------------------------------- -->
     <div>
-      <button class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"(click)="comprar()" >comprar</button>
+      <button class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2 disabled:bg-gradient-to-br disabled:from-purple-300 disabled:to-blue-200" (click)="comprar()" [disabled]="form.invalid" >comprar</button>
       <button class="text-white bg-gradient-to-br from-red-600 to-rose-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2" 
       (click)="cerrar()">cancelar</button>
     </div>
