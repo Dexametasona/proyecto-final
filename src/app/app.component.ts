@@ -103,4 +103,8 @@ export class AppComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.Subscript.unsubscribe()
   }
+  desplegar(){
+    let navBar=document.querySelector('.menu') as HTMLUListElement;
+    navBar.classList.toggle('show')
+  }
 }

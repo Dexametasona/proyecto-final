@@ -4,7 +4,6 @@
 }
 nav{
     font-size: 1rem;
-    opacity: 0.90;
     ul{
         font-family: 'Aboreto', sans-serif;
     }
@@ -18,11 +17,29 @@ nav{
         font-size: 0.8rem;
     }
 }
+.show{
+    top: 48px !important;
+}
 @media screen and (max-width:768px) {
     .bi-arrows-expand{
         visibility: visible;
+        margin: 1rem ;
         font-size: 1.5rem;
         border: 2px solid black;
     }
+    nav{
+        font-size:1.5rem;
+    }
+    .menu{
+        width: 100vw;
+        height: calc(100% - 48px);
+        position: fixed;
+        flex-direction: column;
+        text-align: center;
+        top: -100vh;
+        transition: all .4s;
+        z-index: 2 !important;
+    }
+    
     
 }

@@ -15,34 +15,34 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class=" px-2 py-1 md:px-6 md:py-3">
                     Id
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class=" px-2 py-1 md:px-6 md:py-3">
                     Nombre del producto
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class=" px-2 py-1 md:px-6 md:py-3">
                     Costo
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class=" px-2 py-1 md:px-6 md:py-3">
                     Unidades
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class=" px-2 py-1 md:px-6 md:py-3">
                     Total
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class=" px-2 py-1 md:px-6 md:py-3">
                     Acción
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" *ngFor="let x of listProd | paginacion:page_size:page_number, let i=index">
-                <td class="px-6 py-4">{{i+1}}</td>
-                <td class="px-6 py-4">{{x.name |uppercase}}</td>
-                <td class="px-6 py-4">S/{{x.costo |number : '1.2-2'}}</td>
-                <td class="px-6 py-4">{{x.unid}} unid.</td>
-                <td class="px-6 py-4">S/{{x.unid*x.costo |number : '1.2-2'}}</td>
-                <td class="px-6 py-2">
+                <td class="px-2 py-1 md:px-6 md:py-4">{{i+1}}</td>
+                <td class="px-2 py-1 md:px-6 md:py-4 text-xs md:text-base">{{x.name |uppercase}}</td>
+                <td class="px-2 py-1 md:px-6 md:py-4">S/{{x.costo |number : '1.2-2'}}</td>
+                <td class="px-2 py-1 md:px-6 md:py-4">{{x.unid}} unid.</td>
+                <td class="px-2 py-1 md:px-6 md:py-4">S/{{x.unid*x.costo |number : '1.2-2'}}</td>
+                <td class="px-2 py-1 md:px-6 md:py-2">
                     <button class="delete text-white bg-gradient-to-br from-rose-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-5 py-1k text-center mr-2" (click)="borrar(x)">
                         <span class="bi bi-trash"></span>
                     </button>

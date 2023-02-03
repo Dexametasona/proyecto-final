@@ -15,7 +15,7 @@
   <div *ngFor="let x of listaProd | paginacion:page_size:page_number" class="card rounded-lg p-3 relative">
     <div>
       <div>
-        <h2 class="text-center mb-3 font-bold">{{x.name | uppercase}}</h2>
+        <h2 class="text-center mb-3 font-bold text-sm md:text-base">{{x.name | uppercase}}</h2>
       </div>
       <div>
         <img [src]="x.imagen">

@@ -16,10 +16,6 @@
     animation: glowing 1300ms infinite;
 }
 .delete{
-    // transition: all ease-in-out 0.3s;
-    // &:hover{
-    //     transform: scale(1.2,1.2);
-    // }
     &:hover{
         animation: tiembla 0.1s infinite;
     }
@@ -28,4 +24,9 @@
     0%  { -webkit-transform:rotateZ(-7deg); }
     50% { -webkit-transform:rotateZ( 0deg); }
     100%{ -webkit-transform:rotateZ( 7deg); }
+}
+
+@media screen and (max-width:768px) {
+    
+    
 }
