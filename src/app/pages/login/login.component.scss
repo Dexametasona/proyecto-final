@@ -23,3 +23,20 @@
     }
 }
 
+@media screen and (max-width:1100px){
+.login{
+  width: 80vw;
+}
+}
+
+@media screen and (max-width:600px){
+  .login-side{
+    display: none;
+  }
+  .login{
+    width: 100%;
+  }
+  .login-side-r{
+    width: 100%;
+  }
+}
